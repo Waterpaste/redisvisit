@@ -27,7 +27,10 @@ class redisvis:
 			fp = open(host,'r')
 			#print(fp.read())
 			for ip in fp:
-				if ip!='\n' and ip !='' and ip !='\r':
+				if ':' in ip:
+					iplist = ip.split(':')
+					getiplist.append(iplist[0].strip()+':'+iplist[1].strip())
+				else:	
 					getiplist.append(ip.strip()+':'+str(port))
 			fp.close()
 		elif '.' in host:
